@@ -28,6 +28,19 @@ function clearEditor(type) {
     document.getElementById(type === 'java' ? 'javaEditor' : 'jsonEditor').value = '';
 }
 
+// Generate random hex color different from previous
+function generateRandomColor(previousColor) {
+    const letters = '0123456789ABCDEF';
+    let color;
+    do {
+        color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+    } while (color === previousColor); // Ensure unique consecutive colors
+    return color;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const javaEditor = document.getElementById('javaEditor');
     const jsonEditor = document.getElementById('jsonEditor');
@@ -61,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const startPoseMatch = javaCode.match(/setStartingPose\(new Pose\(([^,]+),\s*([^,]+),\s*Math\.toRadians\(([^)]+)\)\)\);/);
         const lines = [];
         let currentHeading = startPoseMatch ? parseFloat(startPoseMatch[3]) : 0;
+        let previousColor = null;
 
         const lineRegex = /follower\.pathBuilder\(\)[^;]+?;/gs;
         const matches = javaCode.matchAll(lineRegex);
@@ -81,6 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const headingMatch = lineContent.match(/setLinearHeadingInterpolation\(Math\.toRadians\(([^)]+)\),\s*Math\.toRadians\(([^)]+)\)\)/);
             const endDeg = headingMatch ? parseFloat(headingMatch[2]) : currentHeading;
 
+            // Generate unique color for each line
+            const lineColor = generateRandomColor(previousColor);
+            previousColor = lineColor;
+
             lines.push({
                 endPoint: {
                     x: points[points.length - 1].x,
@@ -91,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     endDeg: endDeg
                 },
                 controlPoints: points.slice(1, -1).map(p => ({ x: p.x, y: p.y })),
-                color: "#4CAF50"
+                color: lineColor
             });
 
             currentHeading = endDeg;
