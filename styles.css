@@ -1,0 +1,143 @@
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --editor-bg: #2d2d2d;
+    --border-color: #3d3d3d;
+    --download-green: #4CAF50;
+    --clear-red: #f44336;
+    --header-blue: #2196F3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Consolas', monospace;
+    min-height: 100vh;
+}
+
+.container {
+    padding: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: #00000030;
+    border-radius: 8px;
+}
+
+.header h1 {
+    color: var(--header-blue);
+    font-size: 2.2em;
+    text-shadow: 0 0 10px rgba(33, 150, 243, 0.4);
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+.file-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.download-btn {
+    background-color: var(--download-green);
+    color: white;
+}
+
+.download-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-1px);
+}
+
+.clear-btn {
+    background-color: var(--clear-red);
+    color: white;
+}
+
+.clear-btn:hover {
+    background-color: #da190b;
+    transform: translateY(-1px);
+}
+
+.filename-input {
+    background-color: var(--editor-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    border-radius: 4px;
+    width: 200px;
+}
+
+.editor-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    height: calc(100vh - 200px);
+}
+
+.editor {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--editor-bg);
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.editor-header h3 {
+    color: var(--download-green);
+}
+
+.clear-editor-btn {
+    background-color: #ff9800;
+    color: white;
+}
+
+.clear-editor-btn:hover {
+    background-color: #f57c00;
+}
+
+textarea {
+    flex: 1;
+    background-color: var(--editor-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 15px;
+    font-family: 'Consolas', monospace;
+    font-size: 14px;
+    resize: none;
+    white-space: pre;
+}
+
+textarea:focus {
+    outline: 2px solid var(--download-green);
+}
