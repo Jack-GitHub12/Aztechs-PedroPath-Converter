@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
             javaCode += `        ${pointStrings}\n`;
             javaCode += `    ))\n`;
             javaCode += `    .setLinearHeadingInterpolation(Math.toRadians(${line.endPoint.startDeg}), Math.toRadians(${line.endPoint.endDeg}))\n`;
-            javaCode += `    .setPathEndTimeoutConstraint(750)\n`;
+            javaCode += `    .setPathEndTimeoutConstraint(0)\n`;
             javaCode += `    .build();\n\n`;
 
             currentX = line.endPoint.x;
