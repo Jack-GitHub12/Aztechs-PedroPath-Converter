@@ -1,44 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aztechs Path Maker</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aztechs Path Maker</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>Team 18397 Aztechs Path Maker</h1>
-        </header>
-        
-        <div class="controls">
-            <div class="file-controls">
-                <input type="text" id="fileName" placeholder="Enter file name" class="filename-input">
-                <button class="btn download-btn" onclick="downloadFile('json')">Download .pp</button>
-                <button class="btn download-btn" onclick="downloadFile('java')">Download .java</button>
-                <button class="btn clear-btn" onclick="clearAll()">Clear All</button>
-            </div>
-        </div>
+  <div class="container">
+    <header class="header">
+      <h1>Team 18397 Aztechs Path Maker</h1>
+    </header>
 
-        <div class="editor-container">
-            <div class="editor">
-                <div class="editor-header">
-                    <h3>Java Code</h3>
-                    <button class="btn clear-editor-btn" onclick="clearEditor('java')">Clear</button>
-                </div>
-                <textarea id="javaEditor" spellcheck="false"></textarea>
-            </div>
-            
-            <div class="editor">
-                <div class="editor-header">
-                    <h3>JSON Configuration</h3>
-                    <button class="btn clear-editor-btn" onclick="clearEditor('json')">Clear</button>
-                </div>
-                <textarea id="jsonEditor" spellcheck="false"></textarea>
-            </div>
-        </div>
+    <div class="controls">
+      <div class="file-controls">
+        <input
+          type="text"
+          id="fileName"
+          placeholder="Enter file name"
+          class="filename-input"
+        />
+        <button class="btn download-btn" onclick="downloadFile('json')">
+          Download .pp
+        </button>
+        <button class="btn download-btn" onclick="downloadFile('java')">
+          Download .java
+        </button>
+        <button class="btn clear-btn" onclick="clearAll()">Clear All</button>
+      </div>
     </div>
-    <script src="converter.js"></script>
+
+    <div class="editor-container">
+      <div class="editor">
+        <div class="editor-header">
+          <h3>Java Code</h3>
+          <div class="editor-actions">
+            <button class="btn copy-btn" onclick="copyEditor('java')">
+              Copy
+            </button>
+            <button class="btn paste-btn" onclick="pasteEditor('java')">
+              Paste
+            </button>
+            <button class="btn clear-editor-btn" onclick="clearEditor('java')">
+              Clear
+            </button>
+          </div>
+        </div>
+        <textarea id="javaEditor" spellcheck="false"></textarea>
+      </div>
+
+      <div class="editor">
+        <div class="editor-header">
+          <h3>JSON Configuration</h3>
+          <div class="editor-actions">
+            <button class="btn copy-btn" onclick="copyEditor('json')">
+              Copy
+            </button>
+            <button class="btn paste-btn" onclick="pasteEditor('json')">
+              Paste
+            </button>
+            <button
+              class="btn upload-btn"
+              onclick="document.getElementById('jsonFileInput').click()"
+            >
+              Upload
+            </button>
+            <button class="btn clear-editor-btn" onclick="clearEditor('json')">
+              Clear
+            </button>
+          </div>
+        </div>
+        <textarea id="jsonEditor" spellcheck="false"></textarea>
+        <!-- Hidden file input for JSON/PP file upload -->
+        <input
+          type="file"
+          id="jsonFileInput"
+          accept=".json, .pp"
+          style="display: none;"
+          onchange="loadJSONFile(event)"
+        />
+      </div>
+    </div>
+  </div>
+  <script src="converter.js"></script>
 </body>
 </html>
